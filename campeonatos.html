@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Campeonatos CBM</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0; padding: 0;
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: linear-gradient(white, #002776);
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .topo {
+      display: flex;
+      justify-content: flex-start;
+      margin-bottom: 30px;
+    }
+
+    .btn-voltar {
+      background: #cc3300;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      font-size: 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 3px 7px rgba(0,0,0,0.25);
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-voltar:hover {
+      background: #a62800;
+    }
+
+    .card {
+      background: white;
+      border-left: 8px solid #007847;
+      border-radius: 12px;
+      padding: 25px 30px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+    }
+
+    h1 {
+      color: #002776;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .category-buttons, .category-subbuttons {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 320px;
+      margin: 0 auto;
+    }
+
+    .category-buttons button, .category-subbuttons button {
+      padding: 18px 22px;
+      font-size: 18px;
+      border-radius: 12px;
+      background: #002776;
+      color: white;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 3px 7px rgba(0,0,0,0.25);
+      transition: background-color 0.3s ease;
+    }
+
+    .category-buttons button:hover, .category-subbuttons button:hover {
+      background: #007847;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    #campeonato-content {
+      max-width: 700px;
+      margin: 30px auto 0 auto;
+      background: #e6f0e9;
+      border-radius: 12px;
+      padding: 20px 25px;
+      color: #004d26;
+      font-size: 17px;
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0;
+    }
+
+    table, th, td {
+      border: 1px solid #004d26;
+    }
+
+    th, td {
+      padding: 8px;
+      text-align: left;
+      color: black;
+    }
+
+    @media (max-width: 600px) {
+      .category-buttons, .category-subbuttons {
+        max-width: 100%;
+      }
+
+      .btn-voltar {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="topo">
+      <button class="btn-voltar" onclick="window.location.href='CBM.html'"><i class="fas fa-arrow-left"></i> Voltar ao Início</button>
+    </div>
+
+    <section class="card">
+      <h1>Campeonatos CBM</h1>
+      <div id="main-buttons" class="category-buttons"></div>
+      <div id="sub-buttons" class="category-subbuttons hidden"></div>
+      <button id="btnVoltar" class="btn-voltar hidden" style="margin-top: 20px;">Voltar</button>
+      <div id="campeonato-content" class="hidden"></div>
+    </section>
+  </div>
+
+  <script>
+    const mainButtons = document.getElementById("main-buttons");
+    const subButtons = document.getElementById("sub-buttons");
+    const content = document.getElementById("campeonato-content");
+    const btnVoltar = document.getElementById("btnVoltar");
+
+    const campeonatos = {
+      "Séries": {
+        sub: ["Série A", "Série B", "Série C", "Série D"],
+        content: {
+          "Série A": `
+            <h2>Série A</h2>
+            <h3>Classificação</h3>
+            <table>
+              <tr><th>Time</th><th>Pontos</th><th>Vitórias</th></tr>
+              <tr><td bgcolor="darkgreen">Urubuzada - UBZ</td><td>18</td><td>6</td></tr>
+              <tr><td bgcolor="green">Evolve RJ - EVL</td><td>15</td><td>5</td></tr>
+              <tr><td bgcolor="lightgreen">CONSTELAÇÃO - CSNT</td><td>12</td><td>4</td></tr>
+            </table>
+            <br>
+            <br>
+            <h3>DESTAQUES:</h3>
+            <hr color="#002776">
+            <br>
+            <ul>
+              <li><strong>Mais Gols:</strong> Ubr | 49 Gols</li>
+              <br>
+              <li><strong>Mais Assistencias:</strong> Rocha | 23 Assistencias</li>
+              <BR>
+              <li><strong>Mais Defesas:</strong> Vgb | 83 Defesas</li>
+              <BR>
+              <li><strong>Em Observação Pela CBM:</strong> Raio | 57 Gols</li>
+            </ul>
+            <br>
+            <br>
+            <br>
+            <h3>ATUALIZAÇÕES:</h3>
+            <hr color="#002776">
+            <br>
+            <ul>
+              <li>Rodada 6 concluída.</li>
+              <li>Elitinha FC lidera com folga.</li>
+            </ul>
+          `,
+          "Série B": `
+            <h2>Série B</h2>
+            <p>Classificação equilibrada entre os times da Série B. Destaque para o Juventude CBM.</p>
+          `,
+          "Série C": `
+            <h2>Série C</h2>
+            <p>Novos times estreando na competição. Expectativa alta para a próxima rodada.</p>
+          `,
+          "Série D": `
+            <h2>Série D</h2>
+            <p>Campeonato de base com foco em revelações. Rodada inicial marcada para este fim de semana.</p>
+          `
+        }
+      },
+      "Mar de Monstros": {
+        sub: [],
+        content: `
+          <h2>Mar de Monstros</h2>
+          <p>Campeonato temático com mecânicas especiais. Disputas intensas em arenas personalizadas.</p>
+          <h3>Destaques</h3>
+          <ul>
+            <li>Modo sobrevivência com eliminação direta</li>
+            <li>Time Fúria Sombria lidera o ranking</li>
+          </ul>
+        `
+      }
+    };
+
+    let currentSection = null;
+    let currentSub = null;
+
+    function showMainButtons() {
+      mainButtons.innerHTML = '';
+      mainButtons.classList.remove('hidden');
+      subButtons.classList.add('hidden');
+      content.classList.add('hidden');
+      btnVoltar.classList.add('hidden');
+      currentSection = null;
+      currentSub = null;
+
+      Object.keys(campeonatos).forEach(key => {
+        const btn = document.createElement('button');
+        btn.textContent = key;
+        btn.onclick = () => {
+          if (campeonatos[key].sub.length) {
+            showSubButtons(key);
+          } else {
+            showContent(campeonatos[key].content);
+            currentSection = key;
+            currentSub = null;
+            mainButtons.classList.add('hidden');
+            btnVoltar.classList.remove('hidden');
+          }
+        };
+        mainButtons.appendChild(btn);
+      });
+    }
+
+    function showSubButtons(section) {
+      currentSection = section;
+      subButtons.innerHTML = '';
+      mainButtons.classList.add('hidden');
+      subButtons.classList.remove('hidden');
+      content.classList.add('hidden');
+      btnVoltar.classList.remove('hidden');
+
+      campeonatos[section].sub.forEach(sub => {
+        const btn = document.createElement('button');
+        btn.textContent = sub;
+        btn.onclick = () => {
+          currentSub = sub;
+          showContent(campeonatos[section].content[sub]);
+          subButtons.classList.add('hidden');
+        };
+        subButtons.appendChild(btn);
+      });
+    }
+
+    function showContent(html) {
+      content.innerHTML = html;
+      content.classList.remove('hidden');
+    }
+
+    btnVoltar.onclick = () => {
+      if (currentSub) {
+        showSubButtons(currentSection);
+        currentSub = null;
+      } else if (currentSection) {
+        showMainButtons();
+      }
+    };
+
+    window.onload = () => {
+      showMainButtons();
+    };
+  </script>
+</body>
+</html>

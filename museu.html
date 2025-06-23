@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Museu CBM</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0; padding: 0;
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: linear-gradient(white, #002776);
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .topo {
+      display: flex;
+      justify-content: flex-start;
+      margin-bottom: 30px;
+    }
+
+    .btn-voltar {
+      background: #cc3300;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      font-size: 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 3px 7px rgba(0,0,0,0.25);
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-voltar:hover {
+      background: #a62800;
+    }
+
+    .card {
+      background: white;
+      border-left: 8px solid #007847;
+      border-radius: 12px;
+      padding: 25px 30px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+    }
+
+    h1 {
+      color: #002776;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .category-buttons, .category-subbuttons {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 320px;
+      margin: 0 auto;
+    }
+
+    .category-buttons button, .category-subbuttons button {
+      padding: 18px 22px;
+      font-size: 18px;
+      border-radius: 12px;
+      background: #002776;
+      color: white;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 3px 7px rgba(0,0,0,0.25);
+      transition: background-color 0.3s ease;
+    }
+
+    .category-buttons button:hover, .category-subbuttons button:hover {
+      background: #007847;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    #museu-text-content {
+      max-width: 700px;
+      margin: 30px auto 0 auto;
+      background: #e6f0e9;
+      border-radius: 12px;
+      padding: 20px 25px;
+      color: #004d26;
+      font-size: 17px;
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    @media (max-width: 600px) {
+      .category-buttons, .category-subbuttons {
+        max-width: 100%;
+      }
+
+      .btn-voltar {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="topo">
+      <button class="btn-voltar" onclick="window.location.href='CBM.html'"><i class="fas fa-arrow-left"></i> Voltar ao Início</button>
+    </div>
+
+    <section class="card">
+      <h1>Museu CBM</h1>
+      <div id="museu-main-buttons" class="category-buttons"></div>
+      <div id="museu-sub-buttons" class="category-subbuttons hidden"></div>
+      <button id="btnVoltar" class="btn-voltar hidden" style="margin-top: 20px;">Voltar</button>
+      <div id="museu-text-content" class="hidden"></div>
+    </section>
+  </div>
+
+  <script>
+    const museuMainButtonsDiv = document.getElementById("museu-main-buttons");
+    const museuSubButtonsDiv = document.getElementById("museu-sub-buttons");
+    const museuTextContentDiv = document.getElementById("museu-text-content");
+    const btnVoltar = document.getElementById("btnVoltar");
+
+    const museuHierarchy = {
+      "Séries": {
+        categories: ["Série - A", "Série - B", "Série - C", "Série - D"],
+        texts: {
+          "Série - A": "Conteúdo histórico e curiosidades da Série - A do CBM.",
+          "Série - B": "Detalhes importantes da Série - B.",
+          "Série - C": "Informações e estatísticas da Série - C.",
+          "Série - D": "Fatos e destaques da Série - D."
+        }
+      },
+      "Copas": {
+        categories: ["World Cup", "Copa América"],
+        texts: {
+          "World Cup": "História e recordes da World Cup no CBM.",
+          "Copa América": "Dados e curiosidades da Copa América."
+        }
+      },
+      "Individuais": {
+        categories: [
+          "LUVA DE OURO - PRATA",
+          "PITBULL DE OURO - PRATA",
+          "MAESTRO DE OURO - PRATA",
+          "GOLDEN BOY",
+          "BOLA DE OURO - PRATA"
+        ],
+        texts: {
+          "LUVA DE OURO - PRATA": "Premiação LUVA DE OURO, seus ganhadores e importância.",
+          "PITBULL DE OURO - PRATA": "Detalhes sobre o prêmio PITBULL DE OURO.",
+          "MAESTRO DE OURO - PRATA": "História do MAESTRO DE OURO e seus vencedores.",
+          "GOLDEN BOY": "Informações sobre o prêmio GOLDEN BOY.",
+          "BOLA DE OURO - PRATA": "Descrição do prêmio BOLA DE OURO."
+        }
+      },
+      "Sul América": {
+        categories: ["SUDAMERICANA", "LIBERTADORES"],
+        texts: {
+          "SUDAMERICANA": "Informações da competição SUDAMERICANA.",
+          "LIBERTADORES": "História da LIBERTADORES."
+        }
+      },
+      "Mundiais": {
+        categories: [],
+        texts: {},
+        comingSoon: "Seção Mundiais: Em breve!"
+      },
+      "Principal": {
+        categories: [],
+        texts: {},
+        comingSoon: "Seção Principal: Em breve!"
+      },
+      "S21": {
+        categories: [],
+        texts: {},
+        comingSoon: "Seção S21: Em breve!"
+      }
+    };
+
+    let currentSection = null;
+    let currentCategory = null; // vai ser true/false para indicar se está na página de texto
+
+    function showMuseuMainButtons() {
+      museuMainButtonsDiv.innerHTML = '';
+      museuMainButtonsDiv.classList.remove('hidden');
+      museuSubButtonsDiv.classList.add('hidden');
+      museuTextContentDiv.classList.add('hidden');
+      btnVoltar.classList.add('hidden');
+
+      Object.keys(museuHierarchy).forEach(section => {
+        const btn = document.createElement('button');
+        btn.textContent = section;
+        btn.onclick = () => {
+          if (museuHierarchy[section].comingSoon) {
+            showMuseuText(museuHierarchy[section].comingSoon);
+            btnVoltar.classList.remove('hidden');
+            museuMainButtonsDiv.classList.add('hidden');
+            currentSection = null;
+            currentCategory = true; // está em texto vindo de "em breve"
+          } else {
+            showMuseuSubButtons(section);
+          }
+        };
+        museuMainButtonsDiv.appendChild(btn);
+      });
+    }
+
+    function showMuseuSubButtons(section) {
+      currentSection = section;
+      currentCategory = false;
+
+      museuMainButtonsDiv.classList.add('hidden');
+      museuSubButtonsDiv.innerHTML = '';
+      museuSubButtonsDiv.classList.remove('hidden');
+      museuTextContentDiv.classList.add('hidden');
+      btnVoltar.classList.remove('hidden');
+
+      museuHierarchy[section].categories.forEach(cat => {
+        const btn = document.createElement('button');
+        btn.textContent = cat;
+        btn.onclick = () => {
+          currentCategory = true; // entrou na página de texto da categoria
+          showMuseuText(museuHierarchy[section].texts[cat] || "Conteúdo indisponível.");
+          museuSubButtonsDiv.classList.add('hidden');
+        };
+        museuSubButtonsDiv.appendChild(btn);
+      });
+    }
+
+    function showMuseuText(text) {
+      museuTextContentDiv.textContent = text;
+      museuTextContentDiv.classList.remove('hidden');
+    }
+
+    btnVoltar.onclick = () => {
+      if (currentCategory) {
+        // Se estiver vendo texto, volta para a lista de subcategorias (se tiver)
+        if (currentSection) {
+          showMuseuSubButtons(currentSection);
+          currentCategory = false;
+        } else {
+          // Se não tem seção atual, volta para o menu principal
+          showMuseuMainButtons();
+          currentCategory = false;
+          currentSection = null;
+        }
+      } else if (currentSection) {
+        // Se estiver vendo lista de subcategorias, volta para principal
+        showMuseuMainButtons();
+        currentSection = null; 
+      }
+    };
+
+    window.onload = () => {
+      showMuseuMainButtons();
+    };
+  </script>
+</body>
+</html>
