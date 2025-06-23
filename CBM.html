@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>CBM - Campeonato</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <style>
+    * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  background: linear-gradient(white, #002776);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+nav {
+  background: #002776;
+  color: white;
+  width: 250px;
+  padding-top: 30px;
+  box-shadow: 2px 0 10px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  height: 100%;
+  z-index: 100;
+}
+
+nav img {
+  width: 80px;
+  margin-bottom: 15px;
+}
+
+nav h2 {
+  font-size: 22px;
+  margin-bottom: 30px;
+}
+
+nav a.nav-link {
+  text-decoration: none;
+  color: white;
+  margin: 12px 0;
+  padding: 12px 20px;
+  width: 80%;
+  text-align: left;
+  border-radius: 8px;
+  transition: background 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  background: none;
+}
+
+nav a.nav-link:hover,
+nav a.nav-link.active {
+  background-color: #007847;
+}
+
+nav a.nav-link i {
+  font-size: 20px;
+  width: 25px;
+  text-align: center;
+}
+
+nav .social {
+  margin-top: auto;
+  padding-bottom: 20px;
+}
+
+nav .social a {
+  color: white;
+  margin: 0 10px;
+}
+
+nav .social a:hover {
+  color: #ffcc00;
+}
+
+main {
+  margin-left: 250px;
+  padding: 40px 30px;
+  overflow-y: auto;
+}
+
+.tema-geral {
+  background: linear-gradient(to bottom, #1d1d6b, #002776);
+  padding: 40px;
+  color: white;
+}
+
+.card-tematico {
+  background: hsl(0, 0%, 100%);
+  color: #002776;
+  border-radius: 20px;
+  padding: 30px;
+  text-align: center;
+  margin-bottom: 40px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+  transition: transform 0.3s;
+}
+
+.card-tematico:hover {
+  transform: scale(1.02);
+}
+
+.card-tematico button {
+  margin-top: 20px;
+  padding: 12px 25px;
+  font-size: 16px;
+  background-color: #007847;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.card-tematico button:hover {
+  background-color: #005c37;
+}
+
+/* NOVO: Estilo para imagens nos cards */
+.card-tematico img {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  margin: 15px auto;
+  border-radius: 12px;
+  display: block;
+}
+
+.grid-opcoes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 30px;
+}
+
+.box-opcao {
+  background: rgb(255, 191, 0);
+  color: #002776;
+  padding: 20px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.box-opcao:hover {
+  transform: scale(1.05);
+}
+
+.box-opcao img {
+  width: 60px;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 700px) {
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    z-index: 10;
+  }
+
+  nav img, nav h2 {
+    display: none;
+  }
+
+  nav a.nav-link {
+    width: auto;
+    font-size: 14px;
+    padding: 8px 10px;
+    margin: 0;
+  }
+
+  nav a.nav-link i {
+    font-size: 18px;
+    width: auto;
+  }
+
+  nav .social {
+    display: none;
+  }
+
+  main {
+    margin-left: 0;
+    margin-top: 60px;
+    padding: 20px 15px;
+  }
+}
+
+ #Textfundo {
+  position: absolute;
+  color: white;
+  left: 300px;
+  animation: move infinite 25s;
+ }
+
+ @keyframes move{
+  0%{
+    left: 400px;
+  }
+  50%{
+    left: 450px;
+  }
+  100%{
+    left: 400px;
+  }
+ }
+
+  </style>
+</head>
+<body>
+  <nav>
+    <img src="./LogoCbm.gif" alt="CBM" />
+    <h2>CBM</h2>
+
+    <a href="https://sites.google.com/view/cbm-inicio" class="nav-link active"><i class="fas fa-home"></i> Início</a>
+    <a href="museu.html" class="nav-link"><i class="fa fa-university"></i> Museu</a>
+    <a href="campeonatos.html" class="nav-link"><i class="fas fa-futbol"></i> Campeonato</a>
+
+    <div class="social">
+      <a href="https://www.instagram.com/cbm_mamoball?utm_source=ig_web_button_share_sheet&igsh=MXFyMmhoeWF2Nmpheg==" target="_blank"><i class="fab fa-instagram fa-2x"></i></a>
+      <a href="https://www.youtube.com/@rockstar.efootball
+" target="_blank"><i class="fab fa-youtube fa-2x"></i></a>
+    </div>
+  </nav>
+
+  <main class="tema-geral">
+    <h1 id="Textfundo">CBM | CONFEDERAÇÃO BRASILEIRA DE MAMOBALL</h1>
+    <br>
+    <br>
+    <section class="card-tematico destaque">
+      <h2>Bem-vindo ao CBM!</h2>
+      <p>Explore rankings, prêmios, clubes e história do Campeonato Brasileiro De <strong>Mamoball</strong></p>
+      <button onclick="window.location.href='estatuto.html'">Estatuto</button>
+    </section>
+    <h1 id="Textfundo">.                                 FINALLL!!!!</h1>
+    <br>
+    <br>
+    <section class="card-tematico">
+      <h2>SERIE A | CBM  <i class="fa fa-bullhorn"></i></h2>
+      <br><hr color="#002776"><br>
+      <a href="https://youtu.be/Komwx0ectQI?si=09wihddVc_1SC48b" target="_blank">
+        <img src="https://th.bing.com/th/id/OIP.h0-C4YyBLHHieHhT1JsokwHaD4?rs=1&pid=ImgDetMain&cb=idpwebp2&o=7&rm=3">
+      </a>
+      <h3>LIVE - EVL X CRF FINAL SERIE A | CBM!!!!!</h3>
+    </section>
+
+    <section class="card-tematico">
+      <h2>Top Jogadores</h2>
+      <ol>
+        <li>Pedro Matador - 12 gols</li>
+        <li>Rafa Skill - 10 gols</li>
+        <li>Luquinha Show - 9 gols</li>
+      </ol>
+      <a href="https://youtu.be/Komwx0ectQI?si=09wihddVc_1SC48b" target="_blank">
+        <img src="https://th.bing.com/th/id/OIP.h0-C4YyBLHHieHhT1JsokwHaD4?rs=1&pid=ImgDetMain&cb=idpwebp2&o=7&rm=3">
+      </a>
+    </section>
+
+    <section class="card-tematico">
+      <h2>Notícias Recentes</h2>
+      <p>Nova temporada do CBM começa dia 30!</p>
+      <p>Atualização nas regras de desempate publicada no regulamento.</p>
+      <a href="https://youtu.be/Komwx0ectQI?si=09wihddVc_1SC48b" target="_blank">
+        <img src="https://th.bing.com/th/id/OIP.h0-C4YyBLHHieHhT1JsokwHaD4?rs=1&pid=ImgDetMain&cb=idpwebp2&o=7&rm=3">
+      </a>
+    </section>
+
+    <section class="card-tematico" id="countdown-banner">
+      <h2>Próximo Jogo em:</h2>
+      <a href="https://youtu.be/Komwx0ectQI?si=09wihddVc_1SC48b" target="_blank">
+        <img src="https://th.bing.com/th/id/OIP.h0-C4YyBLHHieHhT1JsokwHaD4?rs=1&pid=ImgDetMain&cb=idpwebp2&o=7&rm=3">
+      </a>
+      <div id="contador" style="font-size: 24px;"></div>
+    </section>
+  </main>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const telaInicio = document.getElementById("tela-inicio");
+      const btnEntrar = document.getElementById("btnEntrar");
+
+      btnEntrar.addEventListener("click", () => {
+        telaInicio.classList.add("fade-out");
+        setTimeout(() => {
+          telaInicio.style.display = "none";
+        }, 600);
+      });
+
+      const evento = new Date("2025-06-30T20:00:00").getTime();
+      const contador = document.getElementById("contador");
+
+      setInterval(() => {
+        const agora = new Date().getTime();
+        const tempoRestante = evento - agora;
+
+        if (tempoRestante <= 0) {
+          contador.textContent = "O jogo já começou!";
+          return;
+        }
+
+        const dias = Math.floor(tempoRestante / (1000 * 60 * 60 * 24));
+        const horas = Math.floor((tempoRestante / (1000 * 60 * 60)) % 24);
+        const minutos = Math.floor((tempoRestante / (1000 * 60)) % 60);
+        const segundos = Math.floor((tempoRestante / 1000) % 60);
+        contador.textContent = `${dias}d ${horas}h ${minutos}m ${segundos}s`;
+      }, 1000);
+    });
+  
+  </script>
+</body>
+</html>
